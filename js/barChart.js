@@ -3,11 +3,20 @@ class barChart {
     constructor(_config, _data) {
         this.config = {
             parentElement: _config.parentElement,
-            containerWidth: _config.containerWidth || 600,
-            containerHeight: _config.containerHeight || 400,
+            // containerWidth: _config.containerWidth || 600,
+            // containerHeight: _config.containerHeight || 400,
+            translateX: _config.translateX,
+            translateY: _config.translateY,
             margin: { top: 50, bottom: 50, right: 50, left: 50 }
             // margin: { top: 10, bottom: 30, right: 10, left: 30 }
         }
+
+        this.config.contentWidth = Object.keys(_data).length * _config.barWidth;
+        this.config.contentHeight = _config.contentHeight || 400;
+        this.config.containerWidth = this.config.contentWidth + this.config.margin.left +
+            this.config.margin.right;
+        this.config.containerHeight = this.config.contentHeight + this.config.margin.top +
+            this.config.margin.bottom;
 
         // Call a class function
 
@@ -29,9 +38,12 @@ class barChart {
             .attr('width', vis.config.containerWidth)
             .attr('height', vis.config.containerHeight)
 
+        let translateX = vis.config.margin.left + vis.config.translateX;
+        let translateY = vis.config.margin.top + vis.config.translateY;
+
         vis.chart = vis.svg.append('g')
-            .attr('transform', `translate(${vis.config.margin.left}, 
-                ${vis.config.margin.top})`);
+            .attr('transform', `translate(${translateX}, 
+                ${translateY})`);
 
         // Initialize linear and ordinal scales (input domain and output 
         // range)

@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("hello");
     // d3.select("body").append("p").text("Hello World!");
 
-    var numPlanetsVsStars = {};
 
     d3.csv('data/exoplanets-1.edited.style.csv')
         .then(data => {
@@ -16,8 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             //     console.log(typeof(val) + `  ${key} : ` + val);
             // }
 
-            // console.log("numPlanet v stars");
-            // console.log(numPlanetsVsStars);
+            var numPlanetsVsStars = {};
 
             for (const planetData of data) {
                 const numStars = planetData['sy_snum'];
@@ -33,12 +31,42 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("numPlanet v stars");
             console.log(numPlanetsVsStars);
 
-            // Create an instance (for example in main.js)
+            // create bar chart for num of exoplanets vs num of stars in the system
             let planetChart = new barChart ({
-                'parentElement': '#vizcontainer',
-                'containerHeight': 400,
-                'containerWidth': 600
+                'parentElement': '#vizplanetsvStars',
+                'contentHeight': 400,
+                'translateX': 0,  // TODO remove this ?
+                'translateY': 0,
+                'barWidth': 60
             }, numPlanetsVsStars);
+
+
+            // how many exoplanets are in systems with 1 planets, 
+            // 2 planets, 3 planets and so on 
+
+            var numPlanetsVsPlanets = {};
+
+            for (const planetData of data) {
+                // number of planets in the star system ?
+                const numPlanets = planetData['sy_pnum'];
+                // console.log(`numStarts: ${numStars}` + " " + typeof(numStars));
+
+                if (!numPlanetsVsPlanets.hasOwnProperty(numPlanets)) {
+                    numPlanetsVsPlanets[numPlanets] = 0;
+                }
+
+                numPlanetsVsPlanets[numPlanets]++;
+            }
+            console.log("numplanetvplanet", numPlanetsVsPlanets);
+
+            new barChart({
+                'parentElement': '#vizplanetsvPlanets',
+                'contentHeight': 400,
+                'translateX': 0,
+                'translateY': 0,
+                'barWidth': 60
+            }, numPlanetsVsPlanets);
+
 
         })
         .catch(error => {
