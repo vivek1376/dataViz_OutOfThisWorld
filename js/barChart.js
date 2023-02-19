@@ -44,28 +44,34 @@ class barChart {
         // console.log(xScale("2"));
         // console.log(xScale("4"));
 
-        const yScale = d3.scaleLinear()
-        .domain([0, d3.max(Object.values(vis.data))])
-        .range([0, vis.height]);
+        const yScale = d3.scaleLog()
+            .base(10)
+            .domain([1, d3.max(Object.values(vis.data))])
+            .range([0, vis.height]);
 
-        const yAxisScale = d3.scaleLinear()
-        .domain([d3.max(Object.values(vis.data)), 0])
-        .range([0, vis.height]);
+        const yAxisScale = d3.scaleLog()
+            .base(10)
+        // .domain([d3.max(Object.values(vis.data)), 1])
+            .domain([1, d3.max(Object.values(vis.data))])
+        // .range([0, vis.height]);
+            .range([vis.height, 0]);
 
         vis.xAxis = d3.axisBottom()
             .scale(xScale);
 
         vis.yAxis = d3.axisLeft()
-            .scale(yAxisScale);
+            .scale(yAxisScale)
+            .ticks(4);
+        // .tickSizeOuter(0);
 
         // Draw the axis
         vis.xAxisGroup = vis.chart.append('g')
             .attr('transform', `translate(0, ${vis.height})`)
-            // .attr('class', 'axis x-axis') 
+        // .attr('class', 'axis x-axis') 
             .call(vis.xAxis);
 
         vis.yAxisGroup = vis.chart.append('g')
-            // .attr('class', 'axis y-axis')
+        // .attr('class', 'axis y-axis')
             .call(vis.yAxis);
 
         vis.chart.selectAll('rect')

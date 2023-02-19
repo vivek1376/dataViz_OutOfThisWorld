@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function() {
             gData = data;
             console.log(data);
 
-            for (let key in data[2]) {
-                let val = data[2][key];
-                console.log(typeof(val) + `  ${key} : ` + val);
-            }
+            // for (let key in data[2]) {
+            //     let val = data[2][key];
+            //     console.log(typeof(val) + `  ${key} : ` + val);
+            // }
 
             // console.log("numPlanet v stars");
             // console.log(numPlanetsVsStars);
@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 numPlanetsVsStars[numStars]++;
             }
 
-            // console.log("numPlanet v stars");
-            // console.log(numPlanetsVsStars);
+            console.log("numPlanet v stars");
+            console.log(numPlanetsVsStars);
 
             // Create an instance (for example in main.js)
             let planetChart = new barChart ({
