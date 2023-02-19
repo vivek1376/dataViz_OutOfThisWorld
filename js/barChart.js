@@ -5,7 +5,8 @@ class barChart {
             parentElement: _config.parentElement,
             containerWidth: _config.containerWidth || 600,
             containerHeight: _config.containerHeight || 400,
-            margin: { top: 10, bottom: 30, right: 10, left: 30 }
+            margin: { top: 50, bottom: 50, right: 50, left: 50 }
+            // margin: { top: 10, bottom: 30, right: 10, left: 30 }
         }
 
         // Call a class function
@@ -47,17 +48,31 @@ class barChart {
         .domain([0, d3.max(Object.values(vis.data))])
         .range([0, vis.height]);
 
+        const yAxisScale = d3.scaleLinear()
+        .domain([d3.max(Object.values(vis.data)), 0])
+        .range([0, vis.height]);
 
-        console.log(vis.data);
-        const arrData = Object.entries(vis.data);
+        vis.xAxis = d3.axisBottom()
+            .scale(xScale);
 
-        console.log(arrData);
+        vis.yAxis = d3.axisLeft()
+            .scale(yAxisScale);
+
+        // Draw the axis
+        vis.xAxisGroup = vis.chart.append('g')
+            .attr('transform', `translate(0, ${vis.height})`)
+            // .attr('class', 'axis x-axis') 
+            .call(vis.xAxis);
+
+        vis.yAxisGroup = vis.chart.append('g')
+            // .attr('class', 'axis y-axis')
+            .call(vis.yAxis);
 
         vis.chart.selectAll('rect')
-        .data(arrData)
-        .enter()
-        .append('rect')
-        .attr('fill', '#a6324c')
+            .data(Object.entries(vis.data))
+            .enter()
+            .append('rect')
+            .attr('fill', '#1b6663')
             .attr('width', xScale.bandwidth())
             // .attr('width', d => xScale(parseInt(d[0])))
             // .attr('height', function(d) {
