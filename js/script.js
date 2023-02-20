@@ -34,10 +34,11 @@ document.addEventListener("DOMContentLoaded", function() {
             // create bar chart for num of exoplanets vs num of stars in the system
             let planetChart = new barChart ({
                 'parentElement': '#vizplanetsvStars',
-                'contentHeight': 400,
+                'contentHeight': 350,
                 'translateX': 0,  // TODO remove this ?
                 'translateY': 0,
-                'barWidth': 60
+                'barWidth': 45,
+                'scaleType': 'log'
             }, numPlanetsVsStars);
 
 
@@ -61,13 +62,79 @@ document.addEventListener("DOMContentLoaded", function() {
 
             new barChart({
                 'parentElement': '#vizplanetsvPlanets',
-                'contentHeight': 400,
+                'contentHeight': 350,
                 'translateX': 0,
                 'translateY': 0,
-                'barWidth': 60
+                'barWidth': 45,
+                'scaleType': 'log'
             }, numPlanetsVsPlanets);
 
 
+            // how many exoplanets orbit stars of different types:
+            // The star types are: A, F, G, K and M 
+            // check st_spectype
+            
+            var numPlanetsVsStarTypes = {};
+
+
+            for (const planetData of data) {
+                if (planetData['st_spectype'] === "" || planetData['st_spectype'] === undefined) 
+                    continue;
+
+                const starSpetralType = planetData['st_spectype'].charAt(0);
+                
+                let allowedStarTypes = ["A", "F", "G", "K", "M"];
+
+                if (!allowedStarTypes.includes(starSpetralType)) continue;
+                
+                if (!numPlanetsVsStarTypes.hasOwnProperty(starSpetralType)) {
+                    numPlanetsVsStarTypes[starSpetralType] = 0;
+                }
+
+                numPlanetsVsStarTypes[starSpetralType]++;
+            }
+
+            // console.log("numPlanetsVsStarTypes:", numPlanetsVsStarTypes);
+            
+            new barChart({
+                'parentElement': '#vizplanetsvStarTypes',
+                'contentHeight': 350,
+                'translateX': 0,
+                'translateY': 0,
+                'barWidth': 45,
+                'scaleType': 'linear'
+            }, numPlanetsVsStarTypes);
+
+            // TODO pass in array to barChart defining desired order
+            // of keys, and map it to array output of object.entries
+
+
+            // how many exoplanets were discovered by different methods
+
+            var numPlanetsVsDiscoveryMethod = {};
+
+            for (const planetData of data) {
+
+                const planetDiscoveryMethod = planetData['discoverymethod'];
+                
+                if (!numPlanetsVsDiscoveryMethod.hasOwnProperty(
+                    planetDiscoveryMethod)) {
+                    numPlanetsVsDiscoveryMethod[planetDiscoveryMethod] = 0;
+                }
+
+                numPlanetsVsDiscoveryMethod[planetDiscoveryMethod]++;
+            }
+
+            // console.log("numPlanetsVsStarTypes:", numPlanetsVsStarTypes);
+            
+            new barChart({
+                'parentElement': '#vizplanetsvsDiscoveryMethod',
+                'contentHeight': 350,
+                'translateX': 0,
+                'translateY': 0,
+                'barWidth': 45,
+                'scaleType': 'log'
+            }, numPlanetsVsDiscoveryMethod);
         })
         .catch(error => {
             console.error('Error loading the data: ' + error);

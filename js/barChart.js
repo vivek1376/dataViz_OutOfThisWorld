@@ -7,7 +7,8 @@ class barChart {
             // containerHeight: _config.containerHeight || 400,
             translateX: _config.translateX,
             translateY: _config.translateY,
-            margin: { top: 50, bottom: 50, right: 50, left: 50 }
+            margin: { top: 50, bottom: 50, right: 50, left: 50 },
+            scaleType: _config.scaleType
             // margin: { top: 10, bottom: 30, right: 10, left: 30 }
         }
 
@@ -50,23 +51,39 @@ class barChart {
         const xScale = d3.scaleBand()
             .domain(Object.keys(vis.data))
             .range([0, vis.width])
-            .paddingInner(0.1);
+            .paddingInner(0.2);
 
         // console.log("xscale test");
         // console.log(xScale("2"));
         // console.log(xScale("4"));
 
-        const yScale = d3.scaleLog()
-            .base(10)
-            .domain([1, d3.max(Object.values(vis.data))])
-            .range([0, vis.height]);
+        var yScale;
+        var yAxisScale;
 
-        const yAxisScale = d3.scaleLog()
-            .base(10)
-        // .domain([d3.max(Object.values(vis.data)), 1])
-            .domain([1, d3.max(Object.values(vis.data))])
-        // .range([0, vis.height]);
-            .range([vis.height, 0]);
+        if (vis.config.scaleType === "log") {
+            yScale = d3.scaleLog()
+                .base(10)
+                .domain([1, d3.max(Object.values(vis.data))])
+                .range([0, vis.height]);
+
+            yAxisScale = d3.scaleLog()
+                .base(10)
+            // .domain([d3.max(Object.values(vis.data)), 1])
+                .domain([1, d3.max(Object.values(vis.data))])
+            // .range([0, vis.height]);
+                .range([vis.height, 0]);
+        } else {
+            
+            yScale = d3.scaleLinear()
+                .domain([0, d3.max(Object.values(vis.data))])
+                .range([0, vis.height]);
+
+            yAxisScale = d3.scaleLinear()
+            // .domain([d3.max(Object.values(vis.data)), 1])
+                .domain([0, d3.max(Object.values(vis.data))])
+            // .range([0, vis.height]);
+                .range([vis.height, 0]);
+        }
 
         vis.xAxis = d3.axisBottom()
             .scale(xScale);
