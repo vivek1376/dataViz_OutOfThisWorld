@@ -127,12 +127,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // console.log("numPlanetsVsStarTypes:", numPlanetsVsStarTypes);
             
-            new barChart({
+            new horizontalBarChart({
                 'parentElement': '#vizplanetsvsDiscoveryMethod',
-                'contentHeight': 350,
+                'contentWidth': 400,
+                'marginLeft': 200,
                 'translateX': 0,
                 'translateY': 0,
-                'barWidth': 45,
+                'barHeight': 45,
                 'scaleType': 'log'
             }, numPlanetsVsDiscoveryMethod);
         })
