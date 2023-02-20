@@ -1,9 +1,9 @@
 var gData;  // to use in browser debugging console
 
+
 document.addEventListener("DOMContentLoaded", function() {
     console.log("hello");
     // d3.select("body").append("p").text("Hello World!");
-
 
     d3.csv('data/exoplanets-1.edited.style.csv')
         .then(data => {
@@ -136,11 +136,134 @@ document.addEventListener("DOMContentLoaded", function() {
                 'barHeight': 45,
                 'scaleType': 'log'
             }, numPlanetsVsDiscoveryMethod);
+
+
+
+
+
+            // how many exoplanets are within a habitable zone vs outside the 
+            // habitable zone.   
+            //   The habitable zone depends on both the distance between the star 
+            //   and the planet, and the type of star. 
+            //   The habitable zone begins and ends according to the list below 
+            //   (in astronomical units) 
+            
+            // use pl_orbsmax
+            // for each star type no of planets outside and inside zone
+
+
+            let numHabitablePlanetsVsStartype = {};
+            for (const planetData of data) {
+                if (planetData['st_spectype'] === "" ||
+                    planetData['st_spectype'] === undefined) 
+                    continue;
+
+                if (planetData['pl_orbsmax'] === "" ||
+                    planetData['pl_orbsmax'] === undefined) 
+                    continue;
+
+                const starSpetralType = planetData['st_spectype'].charAt(0);
+                let allowedStarTypes = ["A", "F", "G", "K", "M"];
+                if (!allowedStarTypes.includes(starSpetralType)) continue;
+               
+                if (!numHabitablePlanetsVsStartype.hasOwnProperty(starSpetralType)) {
+                    numHabitablePlanetsVsStartype[starSpetralType] = {
+                        'habitable': 0,
+                        'non_habitable': 0
+                    };
+                }
+
+                switch(starSpetralType) {
+                    case 'A':
+                        if (planetData['pl_orbsmax'] >= 8.5 &&
+                            planetData['pl_orbsmax'] < 12.5) 
+                            numHabitablePlanetsVsStartype[starSpetralType]['habitable']++;
+                        else
+                            numHabitablePlanetsVsStartype[starSpetralType]['non_habitable']++;
+                        break;
+
+                    case 'F':
+                        if (planetData['pl_orbsmax'] >= 1.5 &&
+                            planetData['pl_orbsmax'] < 2.2) 
+                            numHabitablePlanetsVsStartype[starSpetralType]['habitable']++;
+                        else
+                            numHabitablePlanetsVsStartype[starSpetralType]['non_habitable']++;
+                        break;
+
+                    case 'G':
+                        if (planetData['pl_orbsmax'] >= 0.95 &&
+                            planetData['pl_orbsmax'] < 1.4) 
+                            numHabitablePlanetsVsStartype[starSpetralType]['habitable']++;
+                        else
+                            numHabitablePlanetsVsStartype[starSpetralType]['non_habitable']++;
+                        break;
+
+                    case 'K':
+                        if (planetData['pl_orbsmax'] >= 0.38 &&
+                            planetData['pl_orbsmax'] < 0.56) 
+                            numHabitablePlanetsVsStartype[starSpetralType]['habitable']++;
+                        else
+                            numHabitablePlanetsVsStartype[starSpetralType]['non_habitable']++;
+                        break;
+
+                    case 'M':
+                        if (planetData['pl_orbsmax'] >= 0.08 &&
+                            planetData['pl_orbsmax'] < 0.12) 
+                            numHabitablePlanetsVsStartype[starSpetralType]['habitable']++;
+                        else
+                            numHabitablePlanetsVsStartype[starSpetralType]['non_habitable']++;
+                        break;
+                }
+
+            }
+
+            var stTypeKeys = Object.keys(numHabitablePlanetsVsStartype);
+
+            var groupedDataStType = stTypeKeys.map(function(t) {
+                return {
+                    'group': t, 
+                    'habitable': numHabitablePlanetsVsStartype[t]['habitable'],
+                    'non_habitable': numHabitablePlanetsVsStartype[t]['non_habitable'],
+                };
+            });
+
+            // console.log("numHabitablePlanetsVsStartype:", 
+            //     numHabitablePlanetsVsStartype);
+
+            // console.log("numHabitablePlanetsVsStartype:", 
+            //     Object.entries(numHabitablePlanetsVsStartype));
+
+            console.log("groupedDataStType:", groupedDataStType);
+
+
+            let groupedChart = new groupedBarChart({
+                'parentElement': '#vizgroupedchart',
+                'contentWidth': 400,
+                'marginLeft': 200,
+                'translateX': 0,
+                'translateY': 0,
+                'barHeight': 45,
+                'scaleType': 'linear'
+            }, groupedDataStType);
+            
+
         })
         .catch(error => {
             console.error('Error loading the data: ' + error);
         });
 
+    // just to test map
+    d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv')
+        .then(data => {
+            // console.log("!#####data#####!");
+            // console.log(data);
+            const subgroups = data.columns.slice(1);
+            console.log("subgroups:", subgroups);
+
+            const groups = data.map(d => d.group);
+            console.log("groups:", groups);
+
+        });
     // const iceCreamFlavors = ['vanilla', 'chocolate', 'strawberry', 'cookies and cream', 'cookie dough'];
 
 //     d3.select('body').selectAll('p')
