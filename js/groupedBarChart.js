@@ -138,17 +138,17 @@ class groupedBarChart {
         // .attr('class', 'axis y-axis')
             .call(vis.yAxis);
 
-        // vis.chart.selectAll('g')
-        vis.svg.append('g')
+        vis.chart.append('g')
+        // vis.svg.append('g')
             .selectAll('g')
             .data(vis.data)  // TODO change data
             .join('g')
-            // .attr("transform", d => `translate(${xScale(d.group)}, 0)`)
-            .attr("transform", function(d) {
-                console.log("!!!!!transform", d);
-                console.log("!!!xScale", xScale(d.group));
-                return `translate(${xScale(d.group)}, 0)`;
-            })
+            .attr("transform", d => `translate(${xScale(d.group)}, 0)`)
+            // .attr("transform", function(d) {
+            //     console.log("!!!!!transform", d);
+            //     console.log("!!!xScale", xScale(d.group));
+            //     return `translate(${xScale(d.group)}, 0)`;
+            // })
             .selectAll('rect')
             .data(function(d) { 
                 return subgroups.map(function(key) { 
