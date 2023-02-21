@@ -5,8 +5,6 @@ class groupedBarChart {
             parentElement: _config.parentElement,
             // containerWidth: _config.containerWidth || 600,
             // containerHeight: _config.containerHeight || 400,
-            translateX: _config.translateX,
-            translateY: _config.translateY,
             margin: { top: 50, bottom: 50, right: 50, left: 50 },
             scaleType: _config.scaleType
             // margin: { top: 10, bottom: 30, right: 10, left: 30 }
@@ -40,8 +38,8 @@ class groupedBarChart {
             .attr('width', vis.config.containerWidth)
             .attr('height', vis.config.containerHeight);
 
-        let translateX = vis.config.margin.left + vis.config.translateX;
-        let translateY = vis.config.margin.top + vis.config.translateY;
+        let translateX = vis.config.margin.left;
+        let translateY = vis.config.margin.top;
 
         vis.chart = vis.svg.append('g')
             .attr('transform', `translate(${translateX}, 
@@ -92,13 +90,12 @@ class groupedBarChart {
             // .range([0, vis.height]);
                 .range([vis.height, 0]);
         } else {
-            console.log("!!!vis.data!!");
-            console.log(vis.data);
-            var maxVal = d3.max(vis.data, function(d) {
-                    return d3.max([d['habitable'], d['non_habitable']]);
-                });
+            console.log("!!!grouped data!!", vis.data);
+            // var maxVal = d3.max(vis.data, function(d) {
+            //         return d3.max([d['habitable'], d['non_habitable']]);
+            //     });
 
-            console.log("maxval:", maxVal);
+            // console.log("maxval:", maxVal);
 
 
             yScale = d3.scaleLinear()
@@ -117,8 +114,8 @@ class groupedBarChart {
                 .range([vis.height, 0]);
         }
 
-        console.log("!!!!!yScale!!");
-        console.log(yScale(1000));
+        // console.log("!!!!!yScale!!");
+        // console.log(yScale(1000));
 
         vis.xAxis = d3.axisBottom()
             .scale(xScale);

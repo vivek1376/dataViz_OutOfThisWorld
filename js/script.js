@@ -2,13 +2,13 @@ var gData;  // to use in browser debugging console
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("hello");
+    // console.log("hello");
     // d3.select("body").append("p").text("Hello World!");
 
     d3.csv('data/exoplanets-1.edited.style.csv')
         .then(data => {
             gData = data;
-            console.log(data);
+            // console.log(data);
 
             // for (let key in data[2]) {
             //     let val = data[2][key];
@@ -28,15 +28,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 numPlanetsVsStars[numStars]++;
             }
 
-            console.log("numPlanet v stars");
-            console.log(numPlanetsVsStars);
+            // console.log("numPlanet v stars");
+            // console.log(numPlanetsVsStars);
 
             // create bar chart for num of exoplanets vs num of stars in the system
             let planetChart = new barChart ({
                 'parentElement': '#vizplanetsvStars',
                 'contentHeight': 350,
-                'translateX': 0,  // TODO remove this ?
-                'translateY': 0,
                 'barWidth': 45,
                 'scaleType': 'log'
             }, numPlanetsVsStars);
@@ -58,13 +56,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 numPlanetsVsPlanets[numPlanets]++;
             }
-            console.log("numplanetvplanet", numPlanetsVsPlanets);
+            // console.log("numplanetvplanet", numPlanetsVsPlanets);
 
             new barChart({
                 'parentElement': '#vizplanetsvPlanets',
                 'contentHeight': 350,
-                'translateX': 0,
-                'translateY': 0,
                 'barWidth': 45,
                 'scaleType': 'log'
             }, numPlanetsVsPlanets);
@@ -99,8 +95,6 @@ document.addEventListener("DOMContentLoaded", function() {
             new barChart({
                 'parentElement': '#vizplanetsvStarTypes',
                 'contentHeight': 350,
-                'translateX': 0,
-                'translateY': 0,
                 'barWidth': 45,
                 'scaleType': 'linear'
             }, numPlanetsVsStarTypes);
@@ -131,8 +125,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 'parentElement': '#vizplanetsvsDiscoveryMethod',
                 'contentWidth': 400,
                 'marginLeft': 200,
-                'translateX': 0,
-                'translateY': 0,
                 'barHeight': 45,
                 'scaleType': 'log'
             }, numPlanetsVsDiscoveryMethod);
@@ -233,59 +225,97 @@ document.addEventListener("DOMContentLoaded", function() {
             // console.log("numHabitablePlanetsVsStartype:", 
             //     Object.entries(numHabitablePlanetsVsStartype));
 
-            console.log("groupedDataStType:", groupedDataStType);
+            // console.log("groupedDataStType:", groupedDataStType);
 
 
             let groupedChart = new groupedBarChart({
                 'parentElement': '#vizgroupedchart',
                 'contentWidth': 400,
                 'marginLeft': 200,
-                'translateX': 0,
-                'translateY': 0,
                 'barHeight': 45,
                 'scaleType': 'linear'
             }, groupedDataStType);
             
 
+
+            // Allow users to see the distribution of exoplanets by their 
+            // distance to us. A histogram is a good choice for these 
+            // visualizations. You may use other approaches- see note below.
+
+            // create column of data
+            
+
+            var arrPlanetDistance = [];
+
+            for (const planetData of data) {
+
+                if (planetData['sy_dist'] === "" ||
+                    planetData['sy_dist'] === undefined) 
+                    continue;
+
+                arrPlanetDistance.push({"distance": planetData['sy_dist']});
+            }
+
+            console.log("planet distance distribution:", arrPlanetDistance);
+
+
+            new histogram({
+                'parentElement': '#vizhistogram',
+                'contentWidth': 600,
+                'scaleType': 'linear'
+            }, arrPlanetDistance);
+            
         })
         .catch(error => {
             console.error('Error loading the data: ' + error);
         });
 
-    // just to test map
-    d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv')
-        .then(data => {
-            // console.log("!#####data#####!");
-            // console.log(data);
-            const subgroups = data.columns.slice(1);
-            console.log("subgroups:", subgroups);
+    // // just to test map
+    // d3.csv('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv')
+    //     .then(data => {
+    //         console.log("!#####data#####!");
+    //         console.log(data);
+    //         // const subgroups = data.columns.slice(1);
+    //         // console.log("subgroups:", subgroups);
 
-            const groups = data.map(d => d.group);
-            console.log("groups:", groups);
+    //         // const groups = data.map(d => d.group);
+    //         // console.log("groups:", groups);
 
-        });
-    // const iceCreamFlavors = ['vanilla', 'chocolate', 'strawberry', 'cookies and cream', 'cookie dough'];
-
-//     d3.select('body').selectAll('p')
-//         .data(iceCreamFlavors)
-//         .enter()
-//         .append('p') //now we have a paragraph for each element in the array
-//         .text(d => d);
+    //     });
 
 
-    // linear scale example
-    const iceCreamScale = d3.scaleLinear()
-        .domain([0, 20000])
-        .range([0, 400]);
 
-    // Call the function and pass an input value
-    // does what ??
-    console.log(iceCreamScale(5000));	// Returns: 100
+
+
+
+    // view histo data
+    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv").then(function(data) {
+        console.log("!!!HISTO data:", data);
+
+    });
+
+
+    // // linear scale example
+    // const iceCreamScale = d3.scaleLinear()
+    //     .domain([0, 20000])
+    //     .range([0, 400]);
+
+    // // Call the function and pass an input value
+    // console.log(iceCreamScale(5000));	// Returns: 100
 
 
     // create 'p' elements after body
     // let p2 = d3.select('body').data(iceCreamFlavors).enter()
     //     .append('p');
+
+
+
+
+
+
+
+
+
 
 
 

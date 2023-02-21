@@ -5,8 +5,6 @@ class barChart {
             parentElement: _config.parentElement,
             // containerWidth: _config.containerWidth || 600,
             // containerHeight: _config.containerHeight || 400,
-            translateX: _config.translateX,
-            translateY: _config.translateY,
             margin: { top: 50, bottom: 50, right: 50, left: 50 },
             scaleType: _config.scaleType
             // margin: { top: 10, bottom: 30, right: 10, left: 30 }
@@ -39,8 +37,8 @@ class barChart {
             .attr('width', vis.config.containerWidth)
             .attr('height', vis.config.containerHeight)
 
-        let translateX = vis.config.margin.left + vis.config.translateX;
-        let translateY = vis.config.margin.top + vis.config.translateY;
+        let translateX = vis.config.margin.left;
+        let translateY = vis.config.margin.top;
 
         vis.chart = vis.svg.append('g')
             .attr('transform', `translate(${translateX}, 
