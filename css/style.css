@@ -5,3 +5,27 @@ svg#vizcontainer {
     /* width: 600px; */
     /* height: 400px; */
 }
+
+
+
+.chart-line {
+  fill: none;
+  stroke: #517390;
+  stroke-width: 2px;
+}
+
+
+.axis text {
+  font-size: 13px;
+  fill: #6b6b6b;
+}
+.axis-title {
+  font-size: 13px;
+  fill: #888;
+}
+.x-axis .domain {
+  stroke: #8693a0;
+}
+.y-axis .domain {
+  display: none;
+}

@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // how many exoplanets orbit stars of different types:
             // The star types are: A, F, G, K and M 
             // check st_spectype
-            
+
             var numPlanetsVsStarTypes = {};
 
 
@@ -78,11 +78,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     continue;
 
                 const starSpetralType = planetData['st_spectype'].charAt(0);
-                
+
                 let allowedStarTypes = ["A", "F", "G", "K", "M"];
 
                 if (!allowedStarTypes.includes(starSpetralType)) continue;
-                
+
                 if (!numPlanetsVsStarTypes.hasOwnProperty(starSpetralType)) {
                     numPlanetsVsStarTypes[starSpetralType] = 0;
                 }
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             // console.log("numPlanetsVsStarTypes:", numPlanetsVsStarTypes);
-            
+
             new barChart({
                 'parentElement': '#vizplanetsvStarTypes',
                 'contentHeight': 350,
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
             for (const planetData of data) {
 
                 const planetDiscoveryMethod = planetData['discoverymethod'];
-                
+
                 if (!numPlanetsVsDiscoveryMethod.hasOwnProperty(
                     planetDiscoveryMethod)) {
                     numPlanetsVsDiscoveryMethod[planetDiscoveryMethod] = 0;
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             // console.log("numPlanetsVsStarTypes:", numPlanetsVsStarTypes);
-            
+
             new horizontalBarChart({
                 'parentElement': '#vizplanetsvsDiscoveryMethod',
                 'contentWidth': 400,
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
             //   and the planet, and the type of star. 
             //   The habitable zone begins and ends according to the list below 
             //   (in astronomical units) 
-            
+
             // use pl_orbsmax
             // for each star type no of planets outside and inside zone
 
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const starSpetralType = planetData['st_spectype'].charAt(0);
                 let allowedStarTypes = ["A", "F", "G", "K", "M"];
                 if (!allowedStarTypes.includes(starSpetralType)) continue;
-               
+
                 if (!numHabitablePlanetsVsStartype.hasOwnProperty(starSpetralType)) {
                     numHabitablePlanetsVsStartype[starSpetralType] = {
                         'habitable': 0,
@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 'barHeight': 45,
                 'scaleType': 'linear'
             }, groupedDataStType);
-            
+
 
 
             // Allow users to see the distribution of exoplanets by their 
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // visualizations. You may use other approaches- see note below.
 
             // create column of data
-            
+
 
             var arrPlanetDistance = [];
 
@@ -264,7 +264,81 @@ document.addEventListener("DOMContentLoaded", function() {
                 'contentWidth': 600,
                 'scaleType': 'linear'
             }, arrPlanetDistance);
-            
+
+
+
+
+
+
+
+            // Enable the user to see exoplanet discoveries over time (by year). 
+            // They should be able to identify the trends in the discoveries. 
+            // line chart ? 
+
+            var numPlanetsVsYear = {};
+
+            for (const planetData of data) {
+                // no blank for this column
+
+                const discoveryYear = planetData['disc_year'];
+
+                if (!numPlanetsVsYear.hasOwnProperty(discoveryYear))
+                    numPlanetsVsYear[discoveryYear] = 0;
+
+                numPlanetsVsYear[discoveryYear]++;
+            }
+
+            // console.log("numplanetYear:", numPlanetsVsYear);
+
+
+            let arrnumPlanetsVsYear = [];
+
+
+            Object.entries(numPlanetsVsYear).forEach(item => {
+                arrnumPlanetsVsYear.push({"year": item[0], "numPlanets": item[1]
+                });
+            });
+
+            arrnumPlanetsVsYear.forEach(d => {
+                d.year = new Date(d.year);
+            });
+            // arrnumPlanetsVsYear = [{"year": "1992-05-05", "numPlanets": 100},
+            //     {"year": "1993-05-05", "numPlanets": 140}];
+
+            console.log("arrnumPlanetsVsYear:", arrnumPlanetsVsYear);
+
+            new lineChart ({
+                'parentElement': '#vizlinechart',
+                'contentWidth': 600,
+                'scaleType': 'linear'
+            }, arrnumPlanetsVsYear);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         })
         .catch(error => {
             console.error('Error loading the data: ' + error);
@@ -288,11 +362,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    // view histo data
-    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv").then(function(data) {
-        console.log("!!!HISTO data:", data);
-
-    });
+    // view histo data for test
+    // d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv").then(function(data) {
+    //     console.log("!!!HISTO data:", data);
+    // });
 
 
     // // linear scale example
@@ -314,8 +387,46 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+    console.log("heyyyy!!!!!!");
 
 
+
+    // CODE from join tutorial 
+
+    //this is a call to create a random list of letters in alphabetical order
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+
+    function randomLetters() {
+        let charsToReturn = ''; 
+
+        for (let i = 0; i < characters.length; i++) {
+            let random = Math.random() <= 0.5;
+
+
+            if (random) {
+                charsToReturn = charsToReturn + characters[i];
+            }
+        }
+
+        console.log(charsToReturn);
+        return charsToReturn;
+    }
+
+
+
+    let svg2 = d3.select('#letters')
+        .attr('width', 50)
+        .attr('height', 500);
+
+    let letters = svg2.selectAll("text")
+        .data(randomLetters()) //function call to create a random list of letters
+        // .enter()
+        // .append("text")
+        .join("text")
+        .attr("x", 25)
+        .attr("y", (d, i) => i * 20)
+        .text(d => d);
 
 
 
