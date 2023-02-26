@@ -1,6 +1,5 @@
 var gData;  // to use in browser debugging console
 
-
 document.addEventListener("DOMContentLoaded", function() {
     // console.log("hello");
     // d3.select("body").append("p").text("Hello World!");
@@ -316,19 +315,38 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+            var planetMassVsRadius = [];
 
+            for (const planetData of data) {
+                // no blank for this column
 
+                if (planetData['pl_bmasse'] === "" ||
+                    planetData['pl_bmasse'] === undefined) 
+                    continue;
 
+                if (planetData['pl_rade'] === "" ||
+                    planetData['pl_rade'] === undefined) 
+                    continue;
 
+                const planetMass = planetData['pl_bmasse'];
+                const planetRadius = planetData['pl_rade'];
 
+                // if (!numPlanetsVsYear.hasOwnProperty(discoveryYear))
+                //     numPlanetsVsYear[discoveryYear] = 0;
 
+                // numPlanetsVsYear[discoveryYear]++;
 
+                planetMassVsRadius.push({"mass": +planetMass, "radius": +planetRadius});
+            }
 
+            console.log("planetMassVsRadius:", planetMassVsRadius);
 
-
-
-
-
+            new scatterPlot ({
+                'parentElement': '#vizscatterplot',
+                'contentWidth': 2400,
+                'contentHeight': 2400,
+                'scaleType': 'linear'
+            }, planetMassVsRadius);
 
 
 

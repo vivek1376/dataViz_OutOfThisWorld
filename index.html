@@ -8,16 +8,41 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
         <title></title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
         <link href="css/style.css" rel="stylesheet" />
     </head>
     <body>
-        <svg id="vizplanetsvStars"></svg>
-        <svg id="vizplanetsvPlanets"></svg>
-        <svg id="vizplanetsvStarTypes"></svg>
-        <svg id="vizplanetsvsDiscoveryMethod"></svg>
-        <svg id="vizgroupedchart"></svg>
-        <svg id="vizhistogram"></svg>
-        <svg id="vizlinechart"></svg>
+        <div class="container">
+            <div class="columns col-gapless">
+                <div class="column col-4">
+                    <svg id="vizplanetsvStars"></svg>
+                </div>
+                <div class="column col-4">
+                    <svg id="vizplanetsvPlanets"></svg>
+                </div>
+                <div class="column col-4">
+                    <svg id="vizplanetsvStarTypes"></svg>
+                </div>
+                <div class="column col-4">
+                    <svg id="vizplanetsvsDiscoveryMethod"></svg>
+                </div>
+                <div class="column col-4">
+                    <svg id="vizgroupedchart"></svg>
+                </div>
+                <div class="column col-4">
+                    <svg id="vizhistogram"></svg>
+                </div>
+                <div class="column col-4">
+                    <svg id="vizlinechart"></svg>
+                </div>
+                <div class="column col-8">
+                    <svg id="vizscatterplot"></svg>
+                </div>
+                <div class="column col-8">
+
+                </div>
+            </div>
+        </div>
         <!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="js/barChart.js"></script>
@@ -25,6 +50,7 @@
         <script src="js/groupedBarChart.js"></script>
         <script src="js/histogram.js"></script>
         <script src="js/lineChart.js"></script>
+        <script src="js/scatterPlot.js"></script>
         <script src="js/script.js"></script>
 
         <!-- <div id="my_dataviz"></div> -->
