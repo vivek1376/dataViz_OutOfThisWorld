@@ -2,7 +2,7 @@ class scatterPlot {
     constructor(_config, _data) {
         this.config = {
             parentElement: _config.parentElement,
-            margin: { top: 50, bottom: 50, right: 50, left: 200 },
+            margin: { top: 50, bottom: 50, right: 50, left: 50 },
             scaleType: _config.scaleType
             // margin: { top: 10, bottom: 30, right: 10, left: 30 }
         }
@@ -12,7 +12,8 @@ class scatterPlot {
         if (typeof _data === 'object')
             dataLength = Object.keys(_data).length * _config.barWidth;
 
-        this.config.contentWidth = _config.contentWidth || dataLength || 600;
+        // this.config.contentWidth = _config.contentWidth || dataLength || 600;
+        this.config.contentWidth = _config.contentWidth;
         this.config.contentHeight = _config.contentHeight || 400;
         this.config.containerWidth = this.config.contentWidth + this.config.margin.left 
             + this.config.margin.right;
@@ -53,10 +54,11 @@ class scatterPlot {
 
         // Initialize axes
         vis.xAxis = d3.axisBottom(vis.xScale)
-            .ticks(6)
+            .ticks(2)
         // .tickSize(-vis.height - 10);
         // .tickPadding(10)
-            .tickFormat(d => d + ' earth distance');
+        // .tickFormat(d => d + ' earth distance');
+            .tickFormat(d => d);
 
         vis.yAxis = d3.axisLeft(vis.yScale)
             .ticks(6)
@@ -73,13 +75,12 @@ class scatterPlot {
                 ${vis.config.margin.top})`);
 
         vis.xAxisG = vis.chart.append('g')
-            .attr('class', 'axis x-axis')
+            // .attr('class', 'axis x-axis')
             .attr('transform', `translate(0,${vis.height})`);
 
 
-        vis.yAxisG = vis.chart.append('g')
-            .attr('class', 'axis y-axis');
-
+        vis.yAxisG = vis.chart.append('g');
+            // .attr('class', 'axis y-axis');
 
         this.updateVis();
     }
@@ -124,7 +125,7 @@ class scatterPlot {
             .attr('r', 4)
             .attr('cy', d => vis.yScale(vis.yValue(d)))
             .attr('cx', d => vis.xScale(vis.xValue(d)))
-            .attr('fill', '#36220f');
+            .attr('fill', '#1b6663');
 
         // Update the axes/gridlines
         // We use the second .call() to remove the axis and just show gridlines

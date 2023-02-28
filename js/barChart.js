@@ -28,8 +28,10 @@ class barChart {
         let vis = this; 
 
         // Width and height as the inner dimensions of the chart area- as before
-        vis.width = vis.config.containerWidth - vis.config.margin.left - vis.config.margin.right;
-        vis.height = vis.config.containerHeight - vis.config.margin.top - vis.config.margin.bottom;
+        vis.width = vis.config.containerWidth - vis.config.margin.left - 
+            vis.config.margin.right;
+        vis.height = vis.config.containerHeight - vis.config.margin.top - 
+            vis.config.margin.bottom;
 
         // Define 'svg' as a child-element (g) from the drawing area and include spaces
         // Add <svg> element (drawing space)

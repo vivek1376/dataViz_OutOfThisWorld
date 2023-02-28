@@ -131,7 +131,7 @@ class histogram {
             .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + yScale(d.length) + ")"; })
             .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) -1 ; })
             .attr("height", function(d) { return vis.height - yScale(d.length); })
-            .style("fill", "#69b3a2");
+            .style("fill", "#1b6663");
 
             // .attr('fill', '#1b6663')
             // .attr('width', xScale.bandwidth())

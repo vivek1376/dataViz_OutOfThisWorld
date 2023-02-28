@@ -10,7 +10,7 @@ svg#vizcontainer {
 
 .chart-line {
   fill: none;
-  stroke: #517390;
+  stroke: #1b6663;
   stroke-width: 2px;
 }
 
@@ -19,17 +19,66 @@ svg#vizcontainer {
   font-size: 13px;
   fill: #6b6b6b;
 }
+
 .axis-title {
   font-size: 13px;
   fill: #888;
 }
+
 .x-axis .domain {
   stroke: #8693a0;
 }
+
 .y-axis .domain {
   display: none;
 }
 
-svg#vizheatmap {
-    border: 1px solid grey;
-};
+/* svg#vizheatmap { */
+/*     /1* border: 1px solid grey; *1/ */
+/* } */
+
+svg {
+/* div.column { */
+    /* NOTE didnt make any difference */
+    /* display: block; */
+    /* margin: auto; */
+    background-color: #e8e3df;
+    border-radius: 8px;
+    padding: 5px;
+    /* margin: 20px; */
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #212324;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  /* margin-bottom: 30px; */
+  /* margin: 30px; */
+  color: white;
+  /* padding: 10px; */
+}
+
+div.container {
+    margin-top: 70px;
+}
+
+body {
+    font-family: "Roboto Mono";
+}
+
+p.navbartext {
+    margin: 10px;
+    /* overflow:visible; */
+}
+
+p.viztitle {
+    font-size: 24px;
+    color: #d5e1e6;
+    margin-right: 30px;
+}
+
+p.name {
+    color: #6f787a;
+}

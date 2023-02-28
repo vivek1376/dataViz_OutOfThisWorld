@@ -11,7 +11,7 @@ class groupedBarChart {
         }
 
         // this.config.contentWidth = Object.keys(_data).length * _config.barWidth;
-        this.config.contentWidth = 600;
+        this.config.contentWidth = _config.contentWidth || 600;
         this.config.contentHeight = _config.contentHeight || 400;
         this.config.containerWidth = this.config.contentWidth + this.config.margin.left +
             this.config.margin.right;
@@ -68,7 +68,7 @@ class groupedBarChart {
         // color palette = one color per subgroup
         const color = d3.scaleOrdinal()
             .domain(subgroups)
-            .range(['#e41a1c','#377eb8']);
+            .range(['#52bab6','#0d403e']);
 
         // console.log("xscale test");
         // console.log(xScale("2"));
@@ -138,7 +138,7 @@ class groupedBarChart {
         vis.chart.append('g')
         // vis.svg.append('g')
             .selectAll('g')
-            .data(vis.data)  // TODO change data
+            .data(vis.data)  // TODO change data. for what ??
             .join('g')
             .attr("transform", d => `translate(${xScale(d.group)}, 0)`)
             // .attr("transform", function(d) {
