@@ -79,18 +79,20 @@ class heatmap {
 
         let zones = 10;
 
-        let min_x_val = 9999999999999999;
         // let bandSize = (d3.max(vis.data, vis.xValue) - 
         //     d3.min(vis.data, vis.xValue)) / zones;
 
         let xMinMaxVal = d3.extent(vis.data.map(d => vis.xScale(vis.xValue(d))));
         let yMinMaxVal = d3.extent(vis.data.map(d => vis.yScale(vis.yValue(d))));
 
+        console.log("xMinMaxVal:", xMinMaxVal);
+
         let xBandSize = (xMinMaxVal[1] - xMinMaxVal[0]) / zones;
         let yBandSize = (yMinMaxVal[1] - yMinMaxVal[0]) / zones;
 
         // console.log("min max:", minMaxVal);
         // console.log("band size:", bandSize);
+        // console.log("vis.data length:", vis.data.length);  // result seems okay
 
         for (const planet of vis.data) {
             let xVal = vis.xScale(vis.xValue(planet));
@@ -132,12 +134,11 @@ class heatmap {
         }
 
 
-        console.log("after zone:", vis.data);
-
-        // console.log("min_x_val: ", min_x_val);
-
-
-
+        console.log("length after zone:", vis.data.length);
+        for (const planet of vis.data) {
+            if (!planet.hasOwnProperty("xzone") || !planet.hasOwnProperty("yzone"))
+                console.log("NO x or y ZONE!!!!!!!!");
+        }
 
 
         var heatmapZoneMap = {}
@@ -164,12 +165,15 @@ class heatmap {
         var totalPlanets = 0;
 
         for (const key in heatmapZoneMap) {
+
             if (heatmapZoneMap[key] > maxPlanets) {
                 maxPlanets = heatmapZoneMap[key];
-                totalPlanets += heatmapZoneMap[key];
             }
+
+            totalPlanets += heatmapZoneMap[key];
         }
-        console.log("total planets:", totalPlanets);
+
+        console.log("total planets: ", totalPlanets);
 
         vis.xAxis = d3.axisBottom(vis.xScale)
             .ticks(6);

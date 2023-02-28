@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 planetMassVsRadius.push({"mass": +planetMass, "radius": +planetRadius});
             }
 
-            console.log("planetMassVsRadius:", planetMassVsRadius);
+            console.log("planetMassVsRadius count:", planetMassVsRadius.length);
 
             new scatterPlot ({
                 'parentElement': '#vizscatterplot',
