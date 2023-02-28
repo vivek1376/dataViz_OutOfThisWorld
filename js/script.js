@@ -357,6 +357,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+
+
+            new heatmap ({
+                'parentElement': '#vizheatmap',
+                'contentWidth': 600,
+                'contentHeight': 400,
+                'scaleType': 'linear'
+            }, planetMassVsRadius);
+
+
+
+
+
+
         })
         .catch(error => {
             console.error('Error loading the data: ' + error);

@@ -28,8 +28,10 @@ class scatterPlot {
     initVis() {
         let vis = this;
 
-        vis.width = vis.config.containerWidth - vis.config.margin.left - vis.config.margin.right;
-        vis.height = vis.config.containerHeight - vis.config.margin.top - vis.config.margin.bottom;
+        vis.width = vis.config.containerWidth - vis.config.margin.left - 
+            vis.config.margin.right;
+        vis.height = vis.config.containerHeight - vis.config.margin.top - 
+            vis.config.margin.bottom;
 
 
 
@@ -114,6 +116,7 @@ class scatterPlot {
 
         // Add circles
         vis.chart.selectAll('circle')
+            // .data(vis.data, function (d) {console.log(d); return d.radius;})
             .data(vis.data)
             .enter()
             .append('circle')

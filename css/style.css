@@ -29,3 +29,7 @@ svg#vizcontainer {
 .y-axis .domain {
   display: none;
 }
+
+svg#vizheatmap {
+    border: 1px solid grey;
+};
