@@ -39,6 +39,18 @@ class histogram {
         let translateX = vis.config.margin.left;
         let translateY = vis.config.margin.top;
 
+        // x title
+        vis.svg.append('text')
+            .attr('x', 220)
+            .attr('y', 336)
+            .text('Distance');
+
+        // x title
+        vis.svg.append('text')
+            .attr('x', 20)
+            .attr('y', 36)
+            .text('Count');
+
         vis.chart = vis.svg.append('g')
             .attr('transform', `translate(${translateX}, 
                 ${translateY})`);
@@ -67,11 +79,11 @@ class histogram {
             .thresholds(xScale.ticks(30)); // then the numbers of bins
 
 
-        console.log("!!vis.data for histogram", vis.data);
+        // console.log("!!vis.data for histogram", vis.data);
 
         var bins = histogram(vis.data);
 
-        console.log("!!!bins data", bins);
+        // console.log("!!!bins data", bins);
 
         var yScale;
         var yAxisScale;
@@ -105,11 +117,12 @@ class histogram {
         }
 
         vis.xAxis = d3.axisBottom()
-            .scale(xScale);
+            .scale(xScale)
+            .ticks(3);
 
         vis.yAxis = d3.axisLeft()
-            .scale(yAxisScale);
-            // .ticks(4);
+            .scale(yAxisScale)
+            .ticks(4);
         // .tickSizeOuter(0);
 
         // Draw the axis

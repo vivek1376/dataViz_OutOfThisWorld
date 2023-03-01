@@ -134,7 +134,7 @@ class heatmap {
         }
 
 
-        console.log("length after zone:", vis.data.length);
+        console.log("after zone:", vis.data);
         for (const planet of vis.data) {
             if (!planet.hasOwnProperty("xzone") || !planet.hasOwnProperty("yzone"))
                 console.log("NO x or y ZONE!!!!!!!!");

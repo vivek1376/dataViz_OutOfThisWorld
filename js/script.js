@@ -35,7 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 'parentElement': '#vizplanetsvStars',
                 'contentHeight': 220,
                 'barWidth': 22,
-                'scaleType': 'log'
+                'scaleType': 'log',
+                'barChartNum': 1
             }, numPlanetsVsStars);
 
 
@@ -61,7 +62,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 'parentElement': '#vizplanetsvPlanets',
                 'contentHeight': 220,
                 'barWidth': 22,
-                'scaleType': 'log'
+                'scaleType': 'log',
+                'barChartNum': 2
             }, numPlanetsVsPlanets);
 
 
@@ -95,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 'parentElement': '#vizplanetsvStarTypes',
                 'contentHeight': 220,
                 'barWidth': 22,
-                'scaleType': 'linear'
+                'scaleType': 'linear',
+                'barChartNum': 3
             }, numPlanetsVsStarTypes);
 
             // TODO pass in array to barChart defining desired order
@@ -379,13 +382,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.querySelector("svg#vizplanetsvStars")
                 .addEventListener("mouseover", function() {
-                    console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No of exoplanets wrt. no of stars in system";
+                    // console.log("svg vizplanetvsstars");
+                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets wrt. no. of stars in the system";
                 });
 
             document.querySelector("svg#vizplanetsvStars")
                 .addEventListener("mouseleave", function() {
-                    console.log("svg vizplanetvsstars");
+                    // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
@@ -398,13 +401,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.querySelector("svg#vizplanetsvPlanets")
                 .addEventListener("mouseover", function() {
-                    console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No of exoplantes wrt. no of planets";
+                    // console.log("svg vizplanetvsstars");
+                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets wrt. no. of planets in the system";
                 });
 
             document.querySelector("svg#vizplanetsvPlanets")
                 .addEventListener("mouseleave", function() {
-                    console.log("svg vizplanetvsstars");
+                    // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
@@ -415,13 +418,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.querySelector("svg#vizplanetsvStarTypes")
                 .addEventListener("mouseover", function() {
-                    console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No of exoplanets wrt star type";
+                    // console.log("svg vizplanetvsstars");
+                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets wrt. star type";
                 });
 
             document.querySelector("svg#vizplanetsvStarTypes")
                 .addEventListener("mouseleave", function() {
-                    console.log("svg vizplanetvsstars");
+                    // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
@@ -429,13 +432,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.querySelector("svg#vizplanetsvsDiscoveryMethod")
                 .addEventListener("mouseover", function() {
-                    console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No of exoplanets wrt discovery method";
+                    // console.log("svg vizplanetvsstars");
+                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets wrt. discovery method";
                 });
 
             document.querySelector("svg#vizplanetsvsDiscoveryMethod")
                 .addEventListener("mouseleave", function() {
-                    console.log("svg vizplanetvsstars");
+                    // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
@@ -448,13 +451,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.querySelector("svg#vizgroupedchart")
                 .addEventListener("mouseover", function() {
-                    console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No of exoplanets wrt. habitable zones";
+                    // console.log("svg vizplanetvsstars");
+                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets wrt. habitable zones";
                 });
 
             document.querySelector("svg#vizgroupedchart")
                 .addEventListener("mouseleave", function() {
-                    console.log("svg vizplanetvsstars");
+                    // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
@@ -467,30 +470,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.querySelector("svg#vizhistogram")
                 .addEventListener("mouseover", function() {
-                    console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No of exoplantes wrt. distance";
+                    // console.log("svg vizplanetvsstars");
+                    document.querySelector("p.viztitle").innerHTML = "No. of exoplantes wrt. distance";
                 });
 
             document.querySelector("svg#vizhistogram")
                 .addEventListener("mouseleave", function() {
-                    console.log("svg vizplanetvsstars");
+                    // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
 
 
 
-
-
             document.querySelector("svg#vizlinechart")
                 .addEventListener("mouseover", function() {
-                    console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No of exoplanets discovered wrt time";
+                    // console.log("svg vizplanetvsstars");
+                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets discovered wrt. time";
                 });
 
             document.querySelector("svg#vizlinechart")
                 .addEventListener("mouseleave", function() {
-                    console.log("svg vizplanetvsstars");
+                    // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
@@ -498,20 +499,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.querySelector("svg#vizscatterplot")
                 .addEventListener("mouseover", function() {
-                    console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "Exoplanets radius vs. mass";
+                    // console.log("svg vizplanetvsstars");
+                    document.querySelector("p.viztitle").innerHTML = "Exoplanets' radius wrt. mass";
                 });
 
             document.querySelector("svg#vizscatterplot")
                 .addEventListener("mouseleave", function() {
-                    console.log("svg vizplanetvsstars");
+                    // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
-
-
-
-
+            // TODO not being used
+            // Use heatmap as filter and update scatter plot accordingly
+            function filterData() {
+                if (difficultyFilter.length == 0) {
+                    scatterPlot2.data = data;
+                } else {
+                    scatterPlot2.data = data.filter(d => difficultyFilter.includes(d.difficulty));
+                }
+                scatterplot.updateVis();
+            }
         })
         .catch(error => {
             console.error('Error loading the data: ' + error);

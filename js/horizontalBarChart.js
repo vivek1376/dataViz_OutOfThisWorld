@@ -38,6 +38,19 @@ class horizontalBarChart {
         vis.svg = d3.select(vis.config.parentElement)
             .attr('height', vis.config.containerHeight)
             .attr('width', vis.config.containerWidth)
+        
+        // x title
+        vis.svg.append('text')
+            .attr('x', 220)
+            .attr('y', 326)
+            .text('Count');
+
+        // y title
+        vis.svg.append('text')
+            .attr("x", -200)
+            .attr("y", 11)
+            .attr("transform", "rotate(-90)")
+            .text("Discovery type");
 
         let translateY = vis.config.margin.top;
         let translateX = vis.config.margin.left;

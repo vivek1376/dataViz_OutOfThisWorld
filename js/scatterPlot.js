@@ -54,21 +54,33 @@ class scatterPlot {
 
         // Initialize axes
         vis.xAxis = d3.axisBottom(vis.xScale)
-            .ticks(2)
+            .ticks(4)
         // .tickSize(-vis.height - 10);
         // .tickPadding(10)
         // .tickFormat(d => d + ' earth distance');
             .tickFormat(d => d);
 
         vis.yAxis = d3.axisLeft(vis.yScale)
-            .ticks(6)
-            .tickFormat(d => d + ' earth mass');
+            .ticks(3)
+            // .tickFormat(d => d + ' earth mass');
+            .tickFormat(d => d);
             // .tickSize(-vis.width - 10)
             // .tickPadding(10);
 
         vis.svg = d3.select(vis.config.parentElement)
             .attr('width', vis.config.containerWidth)
             .attr('height', vis.config.containerHeight);
+
+        vis.svg.append('text')
+            .attr('x', 140)
+            .attr('y', 340)
+            .text('Earth radius');
+
+        // y title
+        vis.svg.append('text')
+            .attr('x', 20)
+            .attr('y', 36)
+            .text('Earth mass');
 
         vis.chart = vis.svg.append('g')
             .attr('transform', `translate(${vis.config.margin.left},

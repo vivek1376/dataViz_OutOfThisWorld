@@ -6,7 +6,8 @@ class barChart {
             // containerWidth: _config.containerWidth || 600,
             // containerHeight: _config.containerHeight || 400,
             margin: { top: 50, bottom: 50, right: 50, left: 50 },
-            scaleType: _config.scaleType
+            scaleType: _config.scaleType,
+            barChartNum: _config.barChartNum
             // margin: { top: 10, bottom: 30, right: 10, left: 30 }
         }
 
@@ -38,6 +39,47 @@ class barChart {
         vis.svg = d3.select(vis.config.parentElement)
             .attr('width', vis.config.containerWidth)
             .attr('height', vis.config.containerHeight)
+
+        if (vis.config.barChartNum == 1) {
+            // x title
+            vis.svg.append('text')
+                .attr('x', 40)
+                .attr('y', 302)
+                .text('No. of stars');
+
+            // y title
+            vis.svg.append('text')
+                .attr('x', 20)
+                .attr('y', 36)
+                .text('Count');
+
+        } else if (vis.config.barChartNum == 2) {
+            // x title
+            vis.svg.append('text')
+                .attr('x', 40)
+                .attr('y', 302)
+                .text('No. of planets');
+
+            // y title
+            vis.svg.append('text')
+                .attr('x', 20)
+                .attr('y', 36)
+                .text('Count');
+
+        } else {
+            // x title
+            vis.svg.append('text')
+                .attr('x', 40)
+                .attr('y', 302)
+                .text('Star type');
+
+            // y title
+            vis.svg.append('text')
+                .attr('x', 20)
+                .attr('y', 36)
+                .text('Count');
+
+        }
 
         let translateX = vis.config.margin.left;
         let translateY = vis.config.margin.top;

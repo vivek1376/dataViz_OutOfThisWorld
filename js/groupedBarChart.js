@@ -38,6 +38,23 @@ class groupedBarChart {
             .attr('width', vis.config.containerWidth)
             .attr('height', vis.config.containerHeight);
 
+        // x title
+        vis.svg.append('text')
+            .attr('x', 220)
+            .attr('y', 326)
+            .text('Star type');
+
+        // y title
+        vis.svg.append('text')
+            .attr('x', 20)
+            .attr('y', 36)
+            .text('Count');
+
+        this.svg.append("circle").attr("cx",100).attr("cy", 46).attr("r", 6).style("fill", "#52bab6");
+        this.svg.append("circle").attr("cx",100).attr("cy", 66).attr("r", 6).style("fill", "#0d403e");
+        this.svg.append("text").attr("x", 110).attr("y", 50).text("habitable").style("font-size", "15px").attr("alignment-baseline","middle");
+        this.svg.append("text").attr("x", 110).attr("y", 70).text("non-habitable").style("font-size", "15px").attr("alignment-baseline","middle");
+
         let translateX = vis.config.margin.left;
         let translateY = vis.config.margin.top;
 
@@ -122,7 +139,7 @@ class groupedBarChart {
 
         vis.yAxis = d3.axisLeft()
             .scale(yAxisScale)
-            .ticks(4);
+            .ticks(6);
         // .tickSizeOuter(0);
 
         // Draw the axis

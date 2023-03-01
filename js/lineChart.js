@@ -50,6 +50,17 @@ class lineChart {
             .attr('width', vis.config.containerWidth)
             .attr('height', vis.config.containerHeight);
 
+        vis.svg.append('text')
+            .attr('x', 140)
+            .attr('y', 322)
+            .text('Year');
+
+        // y title
+        vis.svg.append('text')
+            .attr('x', 0)
+            .attr('y', 36)
+            .text('No of planets');
+
         // Append group element that will contain our actual chart (see margin convention)
         vis.chart = vis.svg.append('g')
             .attr('transform', `translate(${vis.config.margin.left},${vis.config.margin.top})`);

@@ -50,7 +50,8 @@ svg {
 
 .navbar {
   overflow: hidden;
-  background-color: #212324;
+  /* background-color: #212324; */
+  background-color: #211e1a;
   position: fixed;
   top: 0;
   width: 100%;
@@ -59,6 +60,26 @@ svg {
   color: white;
   /* padding: 10px; */
 }
+
+div#dummy {
+    margin-bottom: 100px;
+}
+
+div.footer {
+    overflow: hidden;
+    position: fixed;
+    /* top: 100%; */
+    bottom: 0;
+    width: 100%;
+    background-color: #211e1a;
+    /* float: right; */
+    height: 24px;
+    text-align: right;
+    padding-right: 10px;
+    color: #626e62;
+
+}
+
 
 div.container {
     margin-top: 70px;
@@ -73,10 +94,20 @@ p.navbartext {
     /* overflow:visible; */
 }
 
+div.navbar {
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); 
+	-webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); 
+	-moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
+
 p.viztitle {
     font-size: 24px;
+    height: 36px;
+    /* display:inline-block; */
     color: #d5e1e6;
     margin-right: 30px;
+
 }
 
 p.name {
