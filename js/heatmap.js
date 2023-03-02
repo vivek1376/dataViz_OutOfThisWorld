@@ -159,7 +159,7 @@ class heatmap {
             // TODO also add other info about the planets
         }
 
-        console.log("heatmapZoneMap:", Object.entries(heatmapZoneMap));
+        console.log("Object entries heatmapZoneMap:", Object.entries(heatmapZoneMap));
 
         var maxPlanets = 0;
         var totalPlanets = 0;
@@ -202,7 +202,7 @@ class heatmap {
         //     .attr("height", 100)
         //     .style("fill", "brown");
 
-        vis.chart.selectAll('rect')
+        const heatZones = vis.chart.selectAll('rect')
             .data(Object.entries(heatmapZoneMap))
             // .data(Object.entries(heatmapZoneMap), function(d) {console.log("data is: ", d);})
             .enter()
@@ -225,15 +225,46 @@ class heatmap {
             // .attr('height', d => vis.yScale.bandwidth())
             .attr("width", 26)
             .attr("height", 26)
+            .attr("class", d => d[0])
+            // .attr("style", "outline: thin solid red;")
             // .style("fill", d => vis.color(vis.xValue(d)));
             .style("fill", function(d) {
                 if (d[1] === 0)
                     return "white";
                 else 
                     return vis.color(d[1]);
-            });
+            })
+        .on('mouseover', (event, d) => {
+            // console.log("entering ", d);
+            console.log("e:", event.target.style);
+            // event.target.style.fill = "red";
+            // event.target.style.outlineColor = "red";
+            // event.target.style.outlineWidth = "4";
+            event.target.style.outline = "4px solid #cf9d61";
+
+            // event.target.style.fill = "red";
+            // event.target.style.fill = "red";
+            // console.log("event:", event.target.attr("style", "outline: thin solid red;"));
+        })
+        .on('mouseleave', (event, d) => {
+            event.target.style.outline = "0";
+            // console.log("leaving ", d);
+        });
             // .style("fill", d => vis.color(d[1]));
             // .style("fill", "brown");
+
+        // heatZones
+        //     .on('mouseover', (event, d) => {
+        //     // console.log("heatzone event:", event);
+        //     console.log("heatzone d:", d);
+
+        //     d3.select('svg.' + d[0])
+        //         .attr("style", "outline: thin solid red;");
+        // })
+        //     .on('mouseleave', (event, d) => {
+        //         d3.select('svg.' + d[0])
+        //             .attr("style", "outline: 0;");
+        //     });
 
     }
 
