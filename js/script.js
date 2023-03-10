@@ -1,4 +1,7 @@
 var gData;  // to use in browser debugging console
+var scatterplotdata;
+var scatterplotzonedata = [];
+var objscatterzoneplot;
 
 document.addEventListener("DOMContentLoaded", function() {
     // console.log("hello");
@@ -33,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // create bar chart for num of exoplanets vs num of stars in the system
             let planetChart = new barChart ({
                 'parentElement': '#vizplanetsvStars',
-                'contentHeight': 220,
+                'contentHeight': 242,
                 'barWidth': 22,
                 'scaleType': 'log',
                 'barChartNum': 1
@@ -60,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             new barChart({
                 'parentElement': '#vizplanetsvPlanets',
-                'contentHeight': 220,
+                'contentHeight': 242,
                 'barWidth': 22,
                 'scaleType': 'log',
                 'barChartNum': 2
@@ -95,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             new barChart({
                 'parentElement': '#vizplanetsvStarTypes',
-                'contentHeight': 220,
+                'contentHeight': 242,
                 'barWidth': 22,
                 'scaleType': 'linear',
                 'barChartNum': 3
@@ -233,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let groupedChart = new groupedBarChart({
                 'parentElement': '#vizgroupedchart',
                 'contentWidth': 270,
-                'contentHeight': 240,
+                'contentHeight': 242,
                 'marginLeft': 200,
                 // 'barHeight': 45,
                 'scaleType': 'linear'
@@ -265,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function() {
             new histogram({
                 'parentElement': '#vizhistogram',
                 'contentWidth': 250,
-                'contentHeight': 250,
+                'contentHeight': 242,
                 'scaleType': 'linear'
             }, arrPlanetDistance);
 
@@ -314,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function() {
             new lineChart ({
                 'parentElement': '#vizlinechart',
                 'contentWidth': 260,
-                'contentHeight': 240,
+                'contentHeight': 242,
                 'scaleType': 'linear'
             }, arrnumPlanetsVsYear);
 
@@ -342,36 +345,46 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // numPlanetsVsYear[discoveryYear]++;
 
-                planetMassVsRadius.push({"mass": +planetMass, "radius": +planetRadius});
+                planetMassVsRadius.push({
+                    "mass": +planetMass, 
+                    "radius": +planetRadius,
+                    "name": planetData['pl_name'],
+                    "discyear": planetData['disc_year'],
+                    "distance": planetData['sy_dist']
+                });
             }
 
             console.log("planetMassVsRadius count:", planetMassVsRadius.length);
 
-            new scatterPlot ({
-                'parentElement': '#vizscatterplot',
-                // 'contentWidth': 260,
-                'contentWidth': 260,
-                'contentHeight': 260,
-                'scaleType': 'linear'
-            }, planetMassVsRadius);
 
-
-
-
-
-
-
-
-
-
+//             new scatterPlot ({
+//                 'parentElement': '#vizscatterplot',
+//                 // 'contentWidth': 260,
+//                 'contentWidth': 260,
+//                 'contentHeight': 260,
+//                 'scaleType': 'linear'
+//             }, planetMassVsRadius);
 
 
             new heatmap ({
                 'parentElement': '#vizheatmap',
-                'contentWidth': 600,
-                'contentHeight': 400,
+                'contentWidth': 242,
+                'contentHeight': 242,
                 'scaleType': 'linear'
             }, planetMassVsRadius);
+
+
+
+
+
+            objscatterzoneplot = new scatterPlot ({
+                'parentElement': '#vizscatterzoneplot',
+                // 'contentWidth': 260,
+                'contentWidth': 260,
+                'contentHeight': 242,
+                'scaleType': 'linear'
+            }, scatterplotzonedata);
+
 
 
 
@@ -393,12 +406,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
 
 
-
-
-
-
-
-
             document.querySelector("svg#vizplanetsvPlanets")
                 .addEventListener("mouseover", function() {
                     // console.log("svg vizplanetvsstars");
@@ -410,11 +417,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
-
-
-
-
-
 
             document.querySelector("svg#vizplanetsvStarTypes")
                 .addEventListener("mouseover", function() {
@@ -428,8 +430,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
-
-
             document.querySelector("svg#vizplanetsvsDiscoveryMethod")
                 .addEventListener("mouseover", function() {
                     // console.log("svg vizplanetvsstars");
@@ -441,13 +441,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
-
-
-
-
-
-
-
 
             document.querySelector("svg#vizgroupedchart")
                 .addEventListener("mouseover", function() {
@@ -461,13 +454,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
-
-
-
-
-
-
-
             document.querySelector("svg#vizhistogram")
                 .addEventListener("mouseover", function() {
                     // console.log("svg vizplanetvsstars");
@@ -479,9 +465,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
-
-
-
 
             document.querySelector("svg#vizlinechart")
                 .addEventListener("mouseover", function() {
@@ -495,8 +478,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
-
-
             document.querySelector("svg#vizscatterplot")
                 .addEventListener("mouseover", function() {
                     // console.log("svg vizplanetvsstars");
@@ -509,16 +490,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
 
+
             // TODO not being used
             // Use heatmap as filter and update scatter plot accordingly
-            function filterData() {
-                if (difficultyFilter.length == 0) {
-                    scatterPlot2.data = data;
-                } else {
-                    scatterPlot2.data = data.filter(d => difficultyFilter.includes(d.difficulty));
-                }
-                scatterplot.updateVis();
-            }
+
         })
         .catch(error => {
             console.error('Error loading the data: ' + error);
@@ -609,10 +584,31 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
-
-
-
-
-
 });
+
+
+
+function filterData(d) {
+
+    console.log("filter data:", d);
+    // if (difficultyFilter.length == 0) {
+    //     scatterPlot2.data = data;
+    // } else {
+    //     scatterPlot2.data = data.filter(d => difficultyFilter.includes(d.difficulty));
+    // }
+
+
+    xVal = parseInt(d[0].split(',')[0]);
+    yVal = parseInt(d[0].split(',')[1]);
+
+    // for (const key in scatterplotdata) {
+
+    scatterplotzonedata = scatterplotdata.filter(function(d) {
+        return (d.xzone === xVal && d.yzone === yVal);
+    });
+
+    console.log("scatterplotzonedata:", scatterplotzonedata);
+
+    objscatterzoneplot.data = scatterplotzonedata;
+    objscatterzoneplot.updateVis();
+}

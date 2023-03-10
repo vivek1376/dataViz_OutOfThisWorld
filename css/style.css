@@ -113,3 +113,28 @@ p.viztitle {
 p.name {
     color: #6f787a;
 }
+
+div#heatmap_scatter {
+    background-color: #e8e3df;
+    border-radius: 8px;
+    /* float: left; */
+    /* display: inline-block; */
+}
+
+div#tooltip {
+    /* text-align:right; */
+    list-style-type:none;
+    padding-left: 30px;
+    font-size: 14px;
+    line-height: 1;
+    /* border-radius: 8px; */
+    /* border-top-right-radius: 0; */
+    /* border-top-left-radius: 0; */
+    /* background-color: #1b1c17; */
+    /* color: white; */
+}
+
+svg#vizscatterzoneplot {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}

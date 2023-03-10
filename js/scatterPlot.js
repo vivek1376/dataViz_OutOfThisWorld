@@ -73,7 +73,7 @@ class scatterPlot {
 
         vis.svg.append('text')
             .attr('x', 140)
-            .attr('y', 340)
+            .attr('y', 320)
             .text('Earth radius');
 
         // y title
@@ -131,13 +131,33 @@ class scatterPlot {
         vis.chart.selectAll('circle')
             // .data(vis.data, function (d) {console.log(d); return d.radius;})
             .data(vis.data)
-            .enter()
-            .append('circle')
+            .join('circle')
+            // .enter()
+            // .append('circle')
             // .attr('class', 'point')
             .attr('r', 4)
             .attr('cy', d => vis.yScale(vis.yValue(d)))
             .attr('cx', d => vis.xScale(vis.xValue(d)))
-            .attr('fill', '#1b6663');
+            .attr('fill', '#1b6663')
+            .on('mouseover', function(event, d) {
+                event.target.style.outline = "2px solid #c42351";
+                // event.target.style = {"border-radius": "4px"};
+                // console.log("style:", event.target.style);
+                // console.log("d:", d);
+
+                d3.select('div#tooltip').html(`
+                   <li><em>name: ${d.name}</em></li>
+                   <li><em>distance: ${d.distance}</em></li> 
+                   <li><em>discovered in ${d.year}</em></li> 
+                `);
+            })
+            .on('mouseleave', (event, d) => {
+                event.target.style.outline = "0";
+                d3.select('div#tooltip').html(``);
+
+                // console.log("leaving ", d);
+            });
+
 
         // Update the axes/gridlines
         // We use the second .call() to remove the axis and just show gridlines

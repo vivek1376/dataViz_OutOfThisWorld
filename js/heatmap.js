@@ -2,7 +2,7 @@ class heatmap {
     constructor(_config, _data) {
         this.config = {
             parentElement: _config.parentElement,
-            margin: { top: 50, bottom: 50, right: 50, left: 200 },
+            margin: { top: 15, bottom: 85, right: 80, left: 20},
             scaleType: _config.scaleType
             // margin: { top: 10, bottom: 30, right: 10, left: 30 }
         }
@@ -47,6 +47,7 @@ class heatmap {
         vis.xAxisG = vis.chart.append('g')
             .attr('class', 'axis x-axis')
             .attr('transform', `translate(0,${vis.height})`);
+            // .attr('transform', `translate(0, 300));
 
         vis.yAxisG = vis.chart.append('g')
             .attr('class', 'axis y-axis');
@@ -94,11 +95,13 @@ class heatmap {
         // console.log("band size:", bandSize);
         // console.log("vis.data length:", vis.data.length);  // result seems okay
 
+        // add x and y zone to each heatmap block
         for (const planet of vis.data) {
             let xVal = vis.xScale(vis.xValue(planet));
             let yVal = vis.yScale(vis.yValue(planet));
             // console.log("y val:", vis.yScale(vis.yValue(planet)));
 
+            // for each individual planet, assign it a zone
             for (let i = 0, step = 0; i < zones; i++) {
                 if (vis.xScale(vis.xValue(planet)) >= step &&
                     vis.xScale(vis.xValue(planet)) < step + xBandSize) {
@@ -133,15 +136,16 @@ class heatmap {
             }
         }
 
-
         console.log("after zone:", vis.data);
+        scatterplotdata = vis.data;
+
         for (const planet of vis.data) {
             if (!planet.hasOwnProperty("xzone") || !planet.hasOwnProperty("yzone"))
                 console.log("NO x or y ZONE!!!!!!!!");
         }
 
 
-        var heatmapZoneMap = {}
+        var heatmapZoneMap = {};  // stores info about each zone
 
         for (let i = 0; i < zones; i++)
             for (let j = 0; j < zones; j++)
@@ -181,12 +185,12 @@ class heatmap {
         vis.yAxis = d3.axisLeft(vis.yScale)
             .ticks(6);
 
-        vis.xAxisG
-            .call(vis.xAxis);
+        // vis.xAxisG
+        //     .call(vis.xAxis);
             // .call(g => g.select('.domain').remove());
 
-        vis.yAxisG
-            .call(vis.yAxis);
+        // vis.yAxisG
+        //     .call(vis.yAxis);
 
         vis.color = d3.scaleLinear()
             .range(["#92d6c7", "#032b22"])
@@ -234,13 +238,13 @@ class heatmap {
                 else 
                     return vis.color(d[1]);
             })
-        .on('mouseover', (event, d) => {
+        .on('mouseover', function(event, d) {
             // console.log("entering ", d);
-            console.log("e:", event.target.style);
+            // console.log("e:", event.target.style);
             // event.target.style.fill = "red";
             // event.target.style.outlineColor = "red";
             // event.target.style.outlineWidth = "4";
-            event.target.style.outline = "4px solid #cf9d61";
+            event.target.style.outline = "4px solid #c42351";
 
             // event.target.style.fill = "red";
             // event.target.style.fill = "red";
@@ -249,6 +253,11 @@ class heatmap {
         .on('mouseleave', (event, d) => {
             event.target.style.outline = "0";
             // console.log("leaving ", d);
+        })
+        .on('click', function(event, d) {
+            console.log("click d:", d);
+
+            filterData(d);
         });
             // .style("fill", d => vis.color(d[1]));
             // .style("fill", "brown");
