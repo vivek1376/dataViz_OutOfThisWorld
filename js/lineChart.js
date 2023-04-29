@@ -175,7 +175,11 @@ class lineChart {
 
         // Add line path
         vis.chart.selectAll('.chart-line')
-            .data([vis.data])
+            // TODO add explanation why vis.data is encapsulated into array
+            .data([vis.data], function(d) {
+                console.log("vis.data__d: ", d);
+                return d;
+            })
             .join('path')
             .attr('class', 'chart-line')
             .attr('d', vis.line);

@@ -83,7 +83,8 @@ class histogram {
 
         var bins = histogram(vis.data);
 
-        // console.log("!!!bins data", bins);
+        console.log("vis.data:", vis.data);
+        console.log("!!!bins data", bins);
 
         var yScale;
         var yAxisScale;
@@ -142,7 +143,7 @@ class histogram {
             .append('rect')
             .attr("x", 1)
             .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + yScale(d.length) + ")"; })
-            .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) -1 ; })
+            .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) - 1; })
             .attr("height", function(d) { return vis.height - yScale(d.length); })
             .style("fill", "#1b6663");
 
@@ -176,4 +177,4 @@ class histogram {
     }
 
 
-};
+}

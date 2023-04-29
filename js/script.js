@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 numPlanetsVsStars[numStars]++;
             }
 
-            // console.log("numPlanet v stars");
-            // console.log(numPlanetsVsStars);
+            console.log("numPlanet v stars");
+            console.log(numPlanetsVsStars);
 
             // create bar chart for num of exoplanets vs num of stars in the system
             let planetChart = new barChart ({
@@ -392,7 +392,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
             document.querySelector("svg#vizplanetsvStars")
                 .addEventListener("mouseover", function() {
                     // console.log("svg vizplanetvsstars");
@@ -429,7 +428,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
-
             document.querySelector("svg#vizplanetsvsDiscoveryMethod")
                 .addEventListener("mouseover", function() {
                     // console.log("svg vizplanetvsstars");
@@ -453,7 +451,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
-
             document.querySelector("svg#vizhistogram")
                 .addEventListener("mouseover", function() {
                     // console.log("svg vizplanetvsstars");
@@ -471,29 +468,26 @@ document.addEventListener("DOMContentLoaded", function() {
                     // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = "No. of exoplanets discovered wrt. time";
                 });
-
             document.querySelector("svg#vizlinechart")
                 .addEventListener("mouseleave", function() {
                     // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = " ";
                 });
-
-            document.querySelector("svg#vizscatterplot")
+            document.querySelector("svg#vizheatmap")
                 .addEventListener("mouseover", function() {
                     // console.log("svg vizplanetvsstars");
                     document.querySelector("p.viztitle").innerHTML = "Exoplanets' radius wrt. mass";
                 });
-
-            document.querySelector("svg#vizscatterplot")
+            document.querySelector("svg#vizscatterzoneplot")
                 .addEventListener("mouseleave", function() {
                     // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = " ";
+                    document.querySelector("p.viztitle").innerHTML = "temp title";
                 });
-
 
             // TODO not being used
             // Use heatmap as filter and update scatter plot accordingly
 
+            createTable(data);
         })
         .catch(error => {
             console.error('Error loading the data: ' + error);
@@ -611,4 +605,50 @@ function filterData(d) {
 
     objscatterzoneplot.data = scatterplotzonedata;
     objscatterzoneplot.updateVis();
+}
+
+// ref https://codepen.io/blackjacques/pen/RYVpKZ
+function createTable(datasetText) {
+    // const useCols = ['pl_name', 'host_name', 'discoverymethod
+    // d3.text('data/exoplanets-1.edited.style.csv').then(function(datasetText) {
+    d3.text('data/exoplanets-1.edited.style.fortable.csv').then(datasetText => {
+        var rows  = d3.csvParseRows(datasetText),
+            table = d3.select('.fortable').append('table')
+            .style("border-collapse", "collapse")
+            .style("border", "2px black solid");
+
+        // headers
+        table.append("thead").append("tr")
+            .selectAll("th")
+            .data(rows[0])
+            .enter().append("th")
+            .text(function(d) { return d; })
+            .style("border", "1px black solid")
+            .style("padding", "5px")
+            .style("background-color", "lightgray")
+            .style("font-weight", "bold")
+            .style("text-transform", "uppercase");
+
+        // data
+        table.append("tbody")
+            .selectAll("tr").data(rows.slice(1))
+            .enter().append("tr")
+            .selectAll("td")
+            .data(function(d) { return d;})
+            .enter().append("td")
+            .style("border", "1px black solid")
+            .style("padding", "5px")
+            .on("mouseover", function(d) {
+                // console.log("td data:", d);
+                d3.select(this).style("background-color", "powderblue");
+            })
+            .on("mouseout", function() {
+                d3.select(this).style("background-color", "white");
+            })
+            .text(function(d) {return d;})
+            .style("font-size", "12px");
+    });
+
+
+
 }
