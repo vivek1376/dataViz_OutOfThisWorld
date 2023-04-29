@@ -5,7 +5,7 @@ class barChart {
             parentElement: _config.parentElement,
             // containerWidth: _config.containerWidth || 600,
             // containerHeight: _config.containerHeight || 400,
-            margin: { top: 50, bottom: 50, right: 50, left: 50 },
+            margin: { top: 50, bottom: 50, right: 50, left: 100 },
             scaleType: _config.scaleType,
             barChartNum: _config.barChartNum
             // margin: { top: 10, bottom: 30, right: 10, left: 30 }
@@ -43,39 +43,39 @@ class barChart {
         if (vis.config.barChartNum == 1) {
             // x title
             vis.svg.append('text')
-                .attr('x', 40)
-                .attr('y', 302)
+                .attr('x', 80)
+                .attr('y', 326)
                 .text('No. of stars');
 
             // y title
             vis.svg.append('text')
-                .attr('x', 20)
+                .attr('x', 70)
                 .attr('y', 36)
                 .text('Count');
 
         } else if (vis.config.barChartNum == 2) {
             // x title
             vis.svg.append('text')
-                .attr('x', 40)
-                .attr('y', 302)
+                .attr('x', 80)
+                .attr('y', 326)
                 .text('No. of planets');
 
             // y title
             vis.svg.append('text')
-                .attr('x', 20)
+                .attr('x', 70)
                 .attr('y', 36)
                 .text('Count');
 
         } else {
             // x title
             vis.svg.append('text')
-                .attr('x', 40)
-                .attr('y', 302)
+                .attr('x', 80)
+                .attr('y', 326)
                 .text('Star type');
 
             // y title
             vis.svg.append('text')
-                .attr('x', 20)
+                .attr('x', 70)
                 .attr('y', 36)
                 .text('Count');
 
@@ -149,7 +149,7 @@ class barChart {
             .data(Object.entries(vis.data))
             .enter()
             .append('rect')
-            .attr('fill', '#1b6663')
+            .attr('fill', '#283d57')
             .attr('width', xScale.bandwidth())
             // .attr('width', d => xScale(parseInt(d[0])))
             // .attr('height', function(d) {

@@ -40,8 +40,8 @@ class groupedBarChart {
 
         // x title
         vis.svg.append('text')
-            .attr('x', 220)
-            .attr('y', 326)
+            .attr('x', 140)
+            .attr('y', 330)
             .text('Star type');
 
         // y title
@@ -50,8 +50,8 @@ class groupedBarChart {
             .attr('y', 36)
             .text('Count');
 
-        this.svg.append("circle").attr("cx",100).attr("cy", 46).attr("r", 6).style("fill", "#52bab6");
-        this.svg.append("circle").attr("cx",100).attr("cy", 66).attr("r", 6).style("fill", "#0d403e");
+        this.svg.append("circle").attr("cx",100).attr("cy", 46).attr("r", 6).style("fill", "#6c7f96");
+        this.svg.append("circle").attr("cx",100).attr("cy", 66).attr("r", 6).style("fill", "#283d57");
 
         this.svg.append("text").attr("x", 110).attr("y", 50).text("habitable").style("font-size", "15px").attr("alignment-baseline","middle");
         this.svg.append("text").attr("x", 110).attr("y", 70).text("non-habitable").style("font-size", "15px").attr("alignment-baseline","middle");
@@ -86,7 +86,7 @@ class groupedBarChart {
         // color palette = one color per subgroup
         const color = d3.scaleOrdinal()
             .domain(subgroups)
-            .range(['#52bab6','#0d403e']);
+            .range(['#6c7f96','#283d57']);
 
         // console.log("xscale test");
         // console.log(xScale("2"));

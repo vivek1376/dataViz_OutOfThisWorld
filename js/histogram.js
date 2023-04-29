@@ -41,8 +41,8 @@ class histogram {
 
         // x title
         vis.svg.append('text')
-            .attr('x', 220)
-            .attr('y', 336)
+            .attr('x', 140)
+            .attr('y', 330)
             .text('Distance');
 
         // x title
@@ -83,8 +83,8 @@ class histogram {
 
         var bins = histogram(vis.data);
 
-        console.log("vis.data:", vis.data);
-        console.log("!!!bins data", bins);
+        // console.log("vis.data:", vis.data);
+        // console.log("!!!bins data", bins);
 
         var yScale;
         var yAxisScale;
@@ -145,7 +145,7 @@ class histogram {
             .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + yScale(d.length) + ")"; })
             .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) - 1; })
             .attr("height", function(d) { return vis.height - yScale(d.length); })
-            .style("fill", "#1b6663");
+            .style("fill", "#0b1323");
 
             // .attr('fill', '#1b6663')
             // .attr('width', xScale.bandwidth())

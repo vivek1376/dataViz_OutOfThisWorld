@@ -12,49 +12,64 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+        <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+        <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet"> 
+
         <link href="css/style.css" rel="stylesheet" />
     </head>
     <body>
         <div class="navbar">
+            <img class="bground" src="images/background.png" />
             <p class="name navbartext">Out of this World</p>
-            <p class="navbartext viztitle">Visualization</p>
+            <!-- <p class="navbartext viztitle">Visualization</p> -->
         </div>
         <div class="container">
             <!-- <div class="columns col-gapless"> -->
             <div class="columns">
-                <div class="column col-4">
-                    <svg id="vizplanetsvStars"></svg>
+                <div class="column col-4 vizbox">
+                    <div><span>EXOPLANETS NUM VS. NO OF STARS IN STAR SYSTEM</span><svg id="vizplanetsvStars"></svg></div>
                 </div>
-                <div class="column col-4">
-                    <svg id="vizplanetsvPlanets"></svg>
+                <div class="column col-4 vizbox">
+                    <div><span>EXOPLANETS NUM VS. NO OF PLANETS IN STAR SYSTEM</span><svg id="vizplanetsvPlanets"></svg></div>
                 </div>
-                <div class="column col-4">
-                    <svg id="vizplanetsvStarTypes"></svg>
+                <div class="column col-4 vizbox">
+                    <div><span>EXOPLANETS NUM VS. STAR TYPE</span><svg id="vizplanetsvStarTypes"></svg></div>
                 </div>
-                <div class="column col-4">
-                    <svg id="vizplanetsvsDiscoveryMethod"></svg>
+                <div class="column col-4 vizbox">
+                    <div><span>EXOPLANETS NUM VS. DISCOVERY METHOD</span><svg id="vizplanetsvsDiscoveryMethod"></svg></div>
                 </div>
-                <div class="column col-4">
-                    <svg id="vizgroupedchart"></svg>
+                <div class="column col-4 vizbox">
+                    <div><span>EXOPLANETS NUM VS. STAR TYPE (GROUPED BY HABITABILITY)</span><svg id="vizgroupedchart"></svg></div>
                 </div>
-                <div class="column col-4">
-                    <svg id="vizhistogram"></svg>
+                <div class="column col-4 vizbox">
+                    <div><span>EXOPLANETS NUM VS. DISTANCE</span><svg id="vizhistogram"></svg></div>
                 </div>
-                <div class="column col-4">
-                    <svg id="vizlinechart"></svg>
+                <div class="column col-4 vizbox">
+                    <div><span>EXOPLANETS NUM VS. YEAR</span><svg id="vizlinechart"></svg></div>
                 </div>
                 <!-- <div class="column col-4"> -->
                 <!--     <svg id="vizscatterplot"></svg> -->
                 <!-- </div> -->
                 <!-- <div class="column col-8" id="heatmap_scatter"> -->
-                <div class="column col-4">
-                    <svg id="vizheatmap"></svg>
+
+                <!-- <div class="vizbox doubleviz"> -->
+                <div class="column col-8 vizbox">
+                    <div><span>EXOPLANETS' MASS VS. RADIUS</span>
+                        <svg id="vizheatmap"></svg>
+                        <!-- </div> -->
+                        <!-- <div class="column col-4"> -->
+                        <svg id="vizscatterzoneplot"></svg>
+                    </div>
                 </div>
-                <div class="column col-4">
-                    <svg id="vizscatterzoneplot"></svg>
-                </div>
-                <div class="column col-12">
-                    <div class="fortable"></div>
+                <!-- </div> -->
+
+                <div class="column col-12 vizbox">
+                    <div>
+                        <!-- <span>EXOPLANETS' DATA TABULAR VIEW</span> -->
+                        <div class="fortable"></div>
+                    </div>
                 </div>
                 <!-- <div class="fortable"></div> -->
                 <div id="tooltip" class="column col-4"></div>

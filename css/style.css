@@ -7,13 +7,16 @@ svg#vizcontainer {
 }
 
 div.fortable {
-    max-height:200px;
+    max-height:600px;
     overflow:scroll;
+    padding: 20px;
+    /* padding-left: 60px; */
+    padding-bottom:0;
 }
 
 .chart-line {
   fill: none;
-  stroke: #1b6663;
+  stroke: #283d57;
   stroke-width: 2px;
 }
 
@@ -45,23 +48,54 @@ svg {
     /* NOTE didnt make any difference */
     /* display: block; */
     /* margin: auto; */
-    background-color: #e8e3df;
-    border-radius: 8px;
+    /* background-color: #e8e3df; */
+    /* border-radius: 8px; */
     padding: 5px;
+
     /* margin: 20px; */
+    /* // a7adb5 */
+    /* // 858c94 */
+}
+
+span {
+    /* transform: rotate(-90deg); */
+    /* writing-mode:vertical-rl; */
+    writing-mode:sideways-lr;
+    font-family: 'Oswald';
+    font-size: 14px;
+}
+
+div.vizbox {
+    /* padding-left: 20px; */
+    padding-left: 60px;
+    /* padding-top: 20px; */
+    padding-top: 40px;
+}
+
+div.vizbox > div {
+    border-left: 2px solid #a7adb5;
+    border-top: 2px solid #a7adb5;
+}
+
+div.doubleviz {
+    float:left;
 }
 
 .navbar {
-  overflow: hidden;
+  /* overflow: hidden; */
   /* background-color: #212324; */
-  background-color: #211e1a;
-  position: fixed;
-  top: 0;
+  /* background-color: #211e1a; */
+  /* position: fixed; */
+  /* top: 0; */
   width: 100%;
   /* margin-bottom: 30px; */
   /* margin: 30px; */
   color: white;
   /* padding: 10px; */
+}
+
+img.bground {
+    height: 180px;
 }
 
 div#dummy {
@@ -85,7 +119,7 @@ div.footer {
 
 
 div.container {
-    margin-top: 70px;
+    /* margin-top: 40px; */
 }
 
 body {
@@ -95,12 +129,13 @@ body {
 p.navbartext {
     margin: 10px;
     /* overflow:visible; */
+    font-family: 'Oswald', sans-serif;
 }
 
 div.navbar {
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); 
-	-webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); 
-	-moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); */ 
+	/* -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); */ 
+	/* -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5); */
 }
 
 
@@ -114,7 +149,10 @@ p.viztitle {
 }
 
 p.name {
-    color: #6f787a;
+    color: #0b1323;
+    font-size: 36px;
+    font-weight:500;
+    padding-right: 10px;
 }
 
 div#heatmap_scatter {

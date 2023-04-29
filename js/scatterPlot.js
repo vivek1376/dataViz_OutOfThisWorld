@@ -138,7 +138,7 @@ class scatterPlot {
             .attr('r', 4)
             .attr('cy', d => vis.yScale(vis.yValue(d)))
             .attr('cx', d => vis.xScale(vis.xValue(d)))
-            .attr('fill', '#1b6663')
+            .attr('fill', '#283d57')
             .on('mouseover', function(event, d) {
                 event.target.style.outline = "2px solid #c42351";
                 // event.target.style = {"border-radius": "4px"};

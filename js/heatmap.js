@@ -136,7 +136,7 @@ class heatmap {
             }
         }
 
-        console.log("after zone:", vis.data);
+        // console.log("after zone:", vis.data);
         scatterplotdata = vis.data;
 
         for (const planet of vis.data) {
@@ -193,7 +193,8 @@ class heatmap {
         //     .call(vis.yAxis);
 
         vis.color = d3.scaleLinear()
-            .range(["#92d6c7", "#032b22"])
+            // .range(["#92d6c7", "#032b22"])
+            .range(["#d4dbe5", "#283d57"])
             .domain([0, maxPlanets]);
 
         // vis.chart.selectAll('rect')

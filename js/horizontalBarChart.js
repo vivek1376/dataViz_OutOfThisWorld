@@ -41,8 +41,8 @@ class horizontalBarChart {
         
         // x title
         vis.svg.append('text')
-            .attr('x', 220)
-            .attr('y', 326)
+            .attr('x', 140)
+            .attr('y', 330)
             .text('Count');
 
         // y title
@@ -116,7 +116,7 @@ class horizontalBarChart {
             .data(Object.entries(vis.data))
             .enter()
             .append('rect')
-            .attr('fill', '#1b6663')
+            .attr('fill', '#283d57')
             .attr('height', yScale.bandwidth())
             // .attr('width', d => xScale(parseInt(d[0])))
             // .attr('height', function(d) {

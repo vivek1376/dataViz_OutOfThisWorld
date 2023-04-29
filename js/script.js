@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 arrPlanetDistance.push({"distance": planetData['sy_dist']});
             }
 
-            console.log("planet distance distribution:", arrPlanetDistance);
+            // console.log("planet distance distribution:", arrPlanetDistance);
 
 
             new histogram({
@@ -385,104 +385,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 'scaleType': 'linear'
             }, scatterplotzonedata);
 
-
-
-
-
-
-
-
-            document.querySelector("svg#vizplanetsvStars")
-                .addEventListener("mouseover", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets wrt. no. of stars in the system";
-                });
-
-            document.querySelector("svg#vizplanetsvStars")
-                .addEventListener("mouseleave", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = " ";
-                });
-
-
-            document.querySelector("svg#vizplanetsvPlanets")
-                .addEventListener("mouseover", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets wrt. no. of planets in the system";
-                });
-
-            document.querySelector("svg#vizplanetsvPlanets")
-                .addEventListener("mouseleave", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = " ";
-                });
-
-            document.querySelector("svg#vizplanetsvStarTypes")
-                .addEventListener("mouseover", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets wrt. star type";
-                });
-
-            document.querySelector("svg#vizplanetsvStarTypes")
-                .addEventListener("mouseleave", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = " ";
-                });
-            document.querySelector("svg#vizplanetsvsDiscoveryMethod")
-                .addEventListener("mouseover", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets wrt. discovery method";
-                });
-
-            document.querySelector("svg#vizplanetsvsDiscoveryMethod")
-                .addEventListener("mouseleave", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = " ";
-                });
-
-            document.querySelector("svg#vizgroupedchart")
-                .addEventListener("mouseover", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets wrt. habitable zones";
-                });
-
-            document.querySelector("svg#vizgroupedchart")
-                .addEventListener("mouseleave", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = " ";
-                });
-            document.querySelector("svg#vizhistogram")
-                .addEventListener("mouseover", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No. of exoplantes wrt. distance";
-                });
-
-            document.querySelector("svg#vizhistogram")
-                .addEventListener("mouseleave", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = " ";
-                });
-
-            document.querySelector("svg#vizlinechart")
-                .addEventListener("mouseover", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "No. of exoplanets discovered wrt. time";
-                });
-            document.querySelector("svg#vizlinechart")
-                .addEventListener("mouseleave", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = " ";
-                });
-            document.querySelector("svg#vizheatmap")
-                .addEventListener("mouseover", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "Exoplanets' radius wrt. mass";
-                });
-            document.querySelector("svg#vizscatterzoneplot")
-                .addEventListener("mouseleave", function() {
-                    // console.log("svg vizplanetvsstars");
-                    document.querySelector("p.viztitle").innerHTML = "temp title";
-                });
 
             // TODO not being used
             // Use heatmap as filter and update scatter plot accordingly
